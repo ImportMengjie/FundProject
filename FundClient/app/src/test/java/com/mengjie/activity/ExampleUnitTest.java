@@ -1,4 +1,4 @@
-package com.mengjie.fund;
+package com.mengjie.activity;
 
 import org.junit.Test;
 

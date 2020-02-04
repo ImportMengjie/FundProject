@@ -9,7 +9,7 @@ fund_routes = web.RouteTableDef()
 class FundList(web.View):
 
     async def get(self):
-        fund_list = await spider.get_fund_list(self.request.get('page', 1), self.request.get('pagesize', 200), )
+        fund_list = await spider.get_fund_list(self.request.query.get('page', 1), self.request.query.get('pagesize', 200), )
         return web.json_response(fund_list)
 
 
