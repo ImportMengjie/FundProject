@@ -1,15 +1,18 @@
-package com.mengjie.bean;
+package com.mengjie.dao;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.mengjie.bean.FundListBean;
+import com.mengjie.config.API;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,12 +26,11 @@ public class FundList {
     private int totalCount=0;
     private int totalPage=0;
     private int pageSize;
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
 
     @SuppressLint("UseSparseArrays")
-    private Map<Integer,FundListBean> mapPageFundListBean = new HashMap<Integer,FundListBean>();
+    private Map<Integer, FundListBean> mapPageFundListBean = new HashMap<Integer,FundListBean>();
 
-    static public String FundListAPI = "http://10.0.2.2:8080/"+"api/fund";
 
     public int getTotalCount() {
         return totalCount;
@@ -63,11 +65,18 @@ public class FundList {
         this.pageSize=100;
     }
 
+    public FundListBean.FundBean getFundBean(int position){
+        if(mapPageFundListBean.containsKey(position/pageSize +1 )){
+            return Objects.requireNonNull(mapPageFundListBean.get((position / pageSize) +1)).getFundBeanList().get(position%pageSize);
+        }
+        return null;
+    }
+
     public void requestFundList(int page, FundListCallback callback){
         if(mapPageFundListBean.containsKey(page))
             callback.onResponse(mapPageFundListBean.get(page));
         else{
-            String url = FundListAPI+"?page="+String.valueOf(page)+"&pagesize="+String.valueOf(pageSize);
+            String url = String.format(API.fundListURL, page, pageSize);
             Request request = new Request.Builder().url(url).build();
             client.newCall(request).enqueue(new Callback() {
                 @Override
