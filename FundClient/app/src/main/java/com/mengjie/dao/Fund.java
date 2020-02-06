@@ -52,8 +52,7 @@ public class Fund {
                 if(Fund.this.fundBean==null){
                     Gson gson = new Gson();
                     String responseStringData = response.body().string();
-                    FundBean fundBean = gson.fromJson(responseStringData, FundBean.class);
-                    Fund.this.fundBean = fundBean;
+                    Fund.this.fundBean = gson.fromJson(responseStringData, FundBean.class);
                 }
                 callback.onResponse(fundBean);
             }

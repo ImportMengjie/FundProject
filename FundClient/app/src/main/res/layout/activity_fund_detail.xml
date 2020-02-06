@@ -1,76 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_margin="15dp"
-android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/fundName"
-        android:layout_width="match_parent"
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:layout_height="wrap_content"/>
-    
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_margin="15dp"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/fund_sourceRate"
-            android:layout_width="0dp"
-            android:textSize="15sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <TableRow android:layout_margin="5dp">
+                <TextView
+                    android:layout_column="1"
+                    android:text="名称: "
+                    android:textSize="15sp"
+                    android:padding="3dip" />
+
+                <TextView
+                    android:layout_column="1"
+                    android:id="@+id/fundName"
+                    android:textSize="15sp"
+                    android:padding="3dip"
+                    android:textColor="#000"/>
+
+            </TableRow>
+
+
+            <TableRow android:layout_margin="5dp">
+                <TextView
+                    android:text="原费率: "
+                    android:textSize="15sp"
+                    android:padding="3dip"
+                    android:layout_column="1"
+                    />
+
+                <TextView
+                    android:id="@+id/fund_sourceRate"
+                    android:textSize="15sp"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:text="费率: "
+                    android:textSize="15sp"
+                    android:layout_column="1"/>
+
+
+                <TextView
+                    android:id="@+id/fund_Rate"
+                    android:textSize="15sp"
+                    android:layout_column="1"/>
+
+            </TableRow>
+
+            <TableRow android:layout_margin="5dp">
+                <LinearLayout
+                    android:padding="3dip"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="1"
+                    >
+
+                    <TextView
+                        android:text="年收益率"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/syl_1n"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:padding="3dip"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="1"
+                    >
+
+                    <TextView
+                        android:text="半年收益率"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/syl_6y"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:padding="3dip"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="1"
+                    >
+
+                    <TextView
+                        android:text="月收益率"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/syl_1y"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
 
         <TextView
-            android:id="@+id/fund_Rate"
-            android:layout_width="0dp"
-            android:textSize="15sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:text="净值曲线:"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/netWorthChart"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="1月"
+                android:id="@+id/netWorthChartOneMouthButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
 
+            <Button
+                android:text="半年"
+                android:id="@+id/netWorthChartHalfYearButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:text="1年"
+                android:id="@+id/netWorthChartOneYearButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:text="成立以来"
+                android:id="@+id/netWorthChartAllButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:text="累计净值曲线:"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/acNetWorthChart"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="1月"
+                android:id="@+id/acNetWorthChartOneMouthButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:text="半年"
+                android:id="@+id/acNetWorthChartHalfYearButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:text="1年"
+                android:id="@+id/acNetWorthChartOneYearButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:text="成立以来"
+                android:id="@+id/acNetWorthChartAllButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/label_rate"
-        android:gravity="center"
-        android:textSize="18sp"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/syl_1n"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/syl_6y"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/syl_3y"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/syl_1y"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

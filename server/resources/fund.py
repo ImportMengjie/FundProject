@@ -1,6 +1,7 @@
 from aiohttp import web
 
 import spider
+from format.format_fund_detail_data import format_fund_detail_data
 
 fund_routes = web.RouteTableDef()
 
@@ -22,6 +23,6 @@ class Fund(web.View):
             return web.json_response({'msg': 'no fund code'}, status=400)
         data = await spider.get_fund_data(fund_code)
         if data:
-            return web.json_response(data)
+            return web.json_response(format_fund_detail_data(data))
         else:
             return web.json_response({'msg': 'not fund'}, status=404)

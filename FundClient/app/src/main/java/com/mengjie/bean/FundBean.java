@@ -10,7 +10,7 @@ public class FundBean {
     private List<FundManager> Data_currentFundManager;
 
     private List<NetWorth> Data_netWorthTrend;
-    private List<List<Float>> Data_ACWorthTrend;
+    private List<List<Double>> Data_ACWorthTrend;
 
     public Detail getDetail() {
         return detail;
@@ -52,11 +52,11 @@ public class FundBean {
         Data_netWorthTrend = data_netWorthTrend;
     }
 
-    public List<List<Float>> getData_ACWorthTrend() {
+    public List<List<Double>> getData_ACWorthTrend() {
         return Data_ACWorthTrend;
     }
 
-    public void setData_ACWorthTrend(List<List<Float>> data_ACWorthTrend) {
+    public void setData_ACWorthTrend(List<List<Double>> data_ACWorthTrend) {
         Data_ACWorthTrend = data_ACWorthTrend;
     }
 
@@ -226,24 +226,24 @@ public class FundBean {
     }
 
     public class NetWorth{
-        private String x;
-        private String y;
+        private Long x;
+        private Double y;
         private String equityReturn;
         private String unitMoney;
 
-        public String getX() {
+        public Long getX() {
             return x;
         }
 
-        public void setX(String x) {
+        public void setX(Long x) {
             this.x = x;
         }
 
-        public String getY() {
+        public Double getY() {
             return y;
         }
 
-        public void setY(String y) {
+        public void setY(Double y) {
             this.y = y;
         }
 
