@@ -6,5 +6,7 @@ public class API {
 
     public static String fundListURL = baseURL+"/api/fund?page=%d&pagesize=%d";
 
+    public static String searchFundListURL = baseURL+"/api/fund?keyword=%s";
+
     public static String fundURL = baseURL+"/api/fund/%s";
 }
