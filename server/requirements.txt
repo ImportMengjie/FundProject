@@ -1,0 +1,2 @@
+aiohttp==3.6.2
+PyExecJS==1.5.1

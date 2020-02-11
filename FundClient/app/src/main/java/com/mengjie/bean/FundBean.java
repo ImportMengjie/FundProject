@@ -11,6 +11,7 @@ public class FundBean {
 
     private List<NetWorth> Data_netWorthTrend;
     private List<List<Double>> Data_ACWorthTrend;
+    private List<GrandTotal> Data_grandTotal;
 
     public Detail getDetail() {
         return detail;
@@ -58,6 +59,14 @@ public class FundBean {
 
     public void setData_ACWorthTrend(List<List<Double>> data_ACWorthTrend) {
         Data_ACWorthTrend = data_ACWorthTrend;
+    }
+
+    public List<GrandTotal> getData_grandTotal() {
+        return Data_grandTotal;
+    }
+
+    public void setData_grandTotal(List<GrandTotal> data_grandTotal) {
+        Data_grandTotal = data_grandTotal;
     }
 
 
@@ -176,6 +185,26 @@ public class FundBean {
     }
 
 
+    public class GrandTotal{
+        private String name;
+        private List<List<Double>> data;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public List<List<Double>> getData() {
+            return data;
+        }
+
+        public void setData(List<List<Double>> data) {
+            this.data = data;
+        }
+    }
 
     public class FundManager{
         private String id;

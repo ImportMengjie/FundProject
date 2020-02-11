@@ -10,28 +10,41 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.mengjie.activity.R;
 
-public class LineChartMarkView extends MarkerView {
+import java.util.List;
 
-    private String xLabel;
+public class LineChartMarkView extends MarkerView {
 
     private TextView tvDate;
     private TextView tvValue;
-    private ValueFormatter valueFormatter;
 
-    public LineChartMarkView(Context context, ValueFormatter valueFormatter, String xLabel) {
+    private LineChartView.DateFormatter dateFormatter;
+    private List<LineChartView.EntryList> entryListData;
+
+    public LineChartMarkView(Context context, List<LineChartView.EntryList> entryListData, LineChartView.DateFormatter dateFormatter) {
         super(context, R.layout.layout_chart_markview);
-        this.xLabel=xLabel;
-        this.valueFormatter=valueFormatter;
 
         tvDate = findViewById(R.id.tv_date);
         tvValue = findViewById(R.id.tv_value);
+
+        this.dateFormatter = dateFormatter;
+        this.entryListData = entryListData;
     }
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-
-        tvDate.setText(valueFormatter.getAxisLabel(e.getX(),null));
-        tvValue.setText(xLabel+": " + e.getY());
+        if(entryListData.size()>0){
+            tvDate.setText(entryListData.get(0).getValueFormatter(dateFormatter).getAxisLabel(e.getX(),null));
+            StringBuilder value= new StringBuilder();
+            for (int i = 0; i < entryListData.size(); i++) {
+                LineChartView.EntryList entryList = entryListData.get(i);
+                String t = entryList.getPrefix()+":"+entryList.getEntry((int)e.getX()).getY()+entryList.getSuffix()+"\n";
+                value.append(t);
+            }
+            tvValue.setText(value.toString());
+        }else{
+            tvDate.setText("null");
+            tvValue.setText("null");
+        }
         super.refreshContent(e, highlight);
     }
 
