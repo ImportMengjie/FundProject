@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import androidx.annotation.IntegerRes;
 import androidx.annotation.Nullable;
 
 import com.github.mikephil.charting.charts.LineChart;
